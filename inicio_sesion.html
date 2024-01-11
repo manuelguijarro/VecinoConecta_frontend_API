@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Iniciar Sesión - Gestor de Comunidades</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+
+            <a href="/index.html"><img src="assets/logos/logo_vecino_conecta.png"class="logo" alt="Logo de la aplicación"></a>
+
+        <nav>
+            <ul>
+                <li><a href="/registro.html" class="button">¡Regístrate!</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+            <div class="login-form">
+                <h2>Iniciar Sesión</h2>
+                <form>
+                    <label for="username">Nombre de Usuario:</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="type">Tipo de Cuenta:</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="editList" value="presidente">Presidente
+                        </label>
+                        <label>
+                            <input type="radio" name="editList" value="vecino">Vecino
+                        </label>
+                    </div>
+
+                    <button style="cursor: pointer;" type="submit" class="button button-primary">Enviar</button>
+                </form>
+            </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Gestor de Comunidades. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
