@@ -1,46 +1,50 @@
-const registroBtn = document.getElementById('submit-btn');
+const getElement = (id) => document.getElementById(id);
+const getRadioValue = (name) => document.querySelector(`input[name="${name}"]:checked`).value;
+const registroBtn = getElement('submit-btn');
+const nombreVecinoInput = getElement('nombre');
+const apellidosVecinoInput = getElement('apellidos');
+const emailVecinoInput = getElement('email');
+const passwordVecinoInput = getElement('password');
 
-registroBtn.addEventListener('click',async  function(event)  {
-    event.preventDefault(); // Prevent form submission
-    // Supongamos que tienes los siguientes campos en tu formulario
-    const nombreVecino = document.getElementById('nombre').value.trim().toLowerCase();
+const makeRequest = async (url, method, data) => {
+  try {
+    const response = await fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    const apellidosVecino = document.getElementById('apellidos').value.trim().toLowerCase();
-    const emailVecino = document.getElementById('email').value.trim();
-    const passwordVecino = document.getElementById('password').value.trim();
+const registroBtnClickHandler = async (event) => {
+  event.preventDefault();
 
-    // Obtén el valor del input de tipo radio seleccionado
-    const tipoCuenta = document.querySelector('input[name="editList"]:checked');
-    const tipoCuentaValue = tipoCuenta ? tipoCuenta.value : null;
-    console.log(nombreVecino,apellidosVecino,emailVecino,passwordVecino,tipoCuentaValue);
-    let valorRuta = "";
-    if(tipoCuentaValue === 'presidente'){
-        valorRuta = "president";
-    }else if(tipoCuentaValue === 'vecino'){
-        valorRuta = "neighbor";
+  const nombreVecino = nombreVecinoInput.value.trim().toLowerCase();
+  const apellidosVecino = apellidosVecinoInput.value.trim().toLowerCase();
+  const emailVecino = emailVecinoInput.value.trim();
+  const passwordVecino = passwordVecinoInput.value.trim();
+  const tipoCuentaValue = getRadioValue("editList");
+
+  let valorRuta = tipoCuentaValue === 'presidente' ? 'president' : 'neighbor';
+
+  try {
+    const apiUrl = `https://vecino-conecta-backend-api.vercel.app/${valorRuta}/create-${valorRuta}`;
+    console.log(apiUrl);
+
+    const data = await makeRequest(apiUrl, "POST", { nombreVecino, apellidosVecino, emailVecino, passwordVecino });
+
+    if (data.code === 201) {
+      window.location.href = "https://vecino-conecta-frontend-api.vercel.app/inicio_sesion.html";
     }
-    try {
-        console.log("https://vecino-conecta-backend-api.vercel.app/"+valorRuta+"/create-"+valorRuta);
-        const response = await fetch(`https://vecino-conecta-backend-api.vercel.app/${valorRuta}/create-${valorRuta}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ nombreVecino, apellidosVecino,emailVecino, passwordVecino })
-        });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-        const data = await response.json();
-        console.log(data);
-        if (data.code == 201) {
-            console.log("Success:", data);
-            window.location.href = "https://vecino-conecta-frontend-api.vercel.app/inicio_sesion.html";
-        } else {
-            console.log(data);
-        }
-        
-        // Reset the form
-        document.getElementById("registro-form").reset();
-    } catch (error) {
-        console.log(error);
-    }
-});
+registroBtn.addEventListener('click', registroBtnClickHandler);
