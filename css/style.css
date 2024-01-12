@@ -4,7 +4,9 @@
 :root {
     --primary-color: #FBF9F1;
 }
-
+.cargando {
+    display: none;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
