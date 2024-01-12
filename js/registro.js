@@ -1,10 +1,5 @@
 const getElement = (id) => document.getElementById(id);
 const getRadioValue = (name) => document.querySelector(`input[name="${name}"]:checked`).value;
-const registroBtn = getElement('submit-btn');
-const nombreVecinoInput = getElement('nombre');
-const apellidosVecinoInput = getElement('apellidos');
-const emailVecinoInput = getElement('email');
-const passwordVecinoInput = getElement('password');
 
 const makeRequest = async (url, method, data) => {
   try {
@@ -46,5 +41,11 @@ const registroBtnClickHandler = async (event) => {
     console.log(error);
   }
 };
+
+const registroBtn = getElement('submit-btn');
+const nombreVecinoInput = getElement('nombre');
+const apellidosVecinoInput = getElement('apellidos');
+const emailVecinoInput = getElement('email');
+const passwordVecinoInput = getElement('password');
 
 registroBtn.addEventListener('click', registroBtnClickHandler);
