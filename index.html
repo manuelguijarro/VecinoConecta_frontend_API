@@ -7,7 +7,7 @@
     <title>Gestor de Comunidades</title>
 
 </head>
-<body>
+<body class="cargando">
 
 
     <header>
@@ -47,6 +47,10 @@
     <footer>
         <p>&copy; 2024 Gestor de Comunidades. Todos los derechos reservados.</p>
     </footer>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        document.body.classList.remove("cargando");
+    });
+    </script>
 </body>
 </html>

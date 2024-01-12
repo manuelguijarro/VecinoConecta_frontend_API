@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Registro - Gestor de Comunidades</title>
 </head>
-<body>
+<body class="cargando">
 
     <!-- Header -->
     <header>
@@ -56,5 +56,10 @@
         <p>&copy; 2024 Gestor de Comunidades. Todos los derechos reservados.</p>
     </footer>
     <script src="js/registro.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        document.body.classList.remove("cargando");
+    });
+    </script>
 </body>
 </html>
