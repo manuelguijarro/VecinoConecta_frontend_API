@@ -31,7 +31,7 @@ registroBtn.addEventListener('click',async  function(event)  {
 
         const data = await response.json();
         console.log(data);
-        if (data.emailVecino === emailVecino && data.passwordVecino.trim() === passwordVecino) {
+        if (data.code == 201) {
             console.log("Success:", data);
             window.location.href = "http://127.0.0.1:5500/login.html";
         } else {
