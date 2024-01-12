@@ -1,18 +1,18 @@
 const registroBtn = document.getElementById('submit-btn');
-const nombreVecinoInput = document.getElementById('nombre');
-const apellidosVecinoInput = document.getElementById('apellidos');
-const emailVecinoInput = document.getElementById('email');
-const passwordVecinoInput = document.getElementById('password');
-const tipoCuentaRadio = document.querySelector('input[name="editList"]:checked');
 
-registroBtn.addEventListener('click', async function(event) {
-  event.preventDefault(); 
-  const nombreVecino = nombreVecinoInput.value.trim().toLowerCase();
-  const apellidosVecino = apellidosVecinoInput.value.trim().toLowerCase();
-  const emailVecino = emailVecinoInput.value.trim();
-  const passwordVecino = passwordVecinoInput.value.trim();
-  const tipoCuentaValue = tipoCuentaRadio ? tipoCuentaRadio.value : null;
-  // Rest of the code...
+registroBtn.addEventListener('click',async  function(event)  {
+    event.preventDefault(); // Prevent form submission
+    // Supongamos que tienes los siguientes campos en tu formulario
+    const nombreVecino = document.getElementById('nombre').value.trim().toLowerCase();
+
+    const apellidosVecino = document.getElementById('apellidos').value.trim().toLowerCase();
+    const emailVecino = document.getElementById('email').value.trim();
+    const passwordVecino = document.getElementById('password').value.trim();
+
+    // Obtén el valor del input de tipo radio seleccionado
+    const tipoCuenta = document.querySelector('input[name="editList"]:checked');
+    const tipoCuentaValue = tipoCuenta ? tipoCuenta.value : null;
+    console.log(nombreVecino,apellidosVecino,emailVecino,passwordVecino,tipoCuentaValue);
     let valorRuta = "";
     if(tipoCuentaValue === 'presidente'){
         valorRuta = "president";
@@ -30,6 +30,7 @@ registroBtn.addEventListener('click', async function(event) {
         });
         const data = await response.json();
         if (data.code == 201) window.location.href = "https://vecino-conecta-frontend-api.vercel.app/inicio_sesion.html";
+
     } catch (error) {
         console.log(error);
     }
