@@ -33,7 +33,7 @@ registroBtn.addEventListener('click',async  function(event)  {
         console.log(data);
         if (data.code == 201) {
             console.log("Success:", data);
-            window.location.href = "http://127.0.0.1:5500/login.html";
+            window.location.href = "https://vecino-conecta-frontend-api.vercel.app/inicio_sesion.html";
         } else {
             console.log(data);
         }
