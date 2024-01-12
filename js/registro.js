@@ -20,7 +20,7 @@ registroBtn.addEventListener('click',async  function(event)  {
         valorRuta = "neighbor";
     }
     try {
-
+        console.log("https://vecino-conecta-backend-api.vercel.app/"+valorRuta+"/create-"+valorRuta);
         const response = await fetch(`https://vecino-conecta-backend-api.vercel.app/${valorRuta}/create-${valorRuta}`, {
             method: "POST",
             headers: {
@@ -30,7 +30,7 @@ registroBtn.addEventListener('click',async  function(event)  {
         });
 
         const data = await response.json();
-
+        console.log(data);
         if (data.emailVecino === emailVecino && data.passwordVecino.trim() === passwordVecino) {
             console.log("Success:", data);
             window.location.href = "http://127.0.0.1:5500/login.html";
