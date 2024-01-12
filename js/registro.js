@@ -21,7 +21,7 @@ registroBtn.addEventListener('click',async  function(event)  {
     }
     try {
 
-        const response = await fetch(`https://vecino-conecta-backend-jc8x51r7y-manuels-projects-84e6d30b.vercel.app/${valorRuta}/create-${valorRuta}`, {
+        const response = await fetch(`https://vecino-conecta-backend-api.vercel.app/${valorRuta}/create-${valorRuta}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
